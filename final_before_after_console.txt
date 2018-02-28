@@ -1,0 +1,55 @@
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R é um software livre e vem sem GARANTIA ALGUMA.
+Você pode redistribuí-lo sob certas circunstâncias.
+Digite 'license()' ou 'licence()' para detalhes de distribuição.
+
+R é um projeto colaborativo com muitos contribuidores.
+Digite 'contributors()' para obter mais informações e
+'citation()' para saber como citar o R ou pacotes do R em publicações.
+
+Digite 'demo()' para demonstrações, 'help()' para o sistema on-line de ajuda,
+ou 'help.start()' para abrir o sistema de ajuda em HTML no seu navegador.
+Digite 'q()' para sair do R.
+
+[Workspace loaded from ~/.RData]
+
+> library(readr)
+Warning message:
+package ‘readr’ was built under R version 3.3.2 
+> final_before_after_treatment <- read_csv("~/Documents/Dona Tese/final_before_after_treatment.csv", 
++     col_types = cols(ANT = col_number(), 
++         DEP = col_number(), DIFMED = col_number(), 
++         DTOUT = col_date(format = "%d/%m/%Y"), 
++         GERA = col_number(), POP = col_number(), 
++         POSTR = col_number(), `V%2000` = col_number(), 
++         `V%2004` = col_number(), `V%2008` = col_number(), 
++         `V%2012` = col_number(), `V%2016` = col_number(), 
++         VNOM2000 = col_number(), VNOM2004 = col_number(), 
++         VNOM2008 = col_number(), VNOM2012 = col_number(), 
++         VNOM2016 = col_number()))
+Warning: 33 parsing failures.
+row # A tibble: 5 x 5 col     row      col expected actual expected   <int>    <chr>    <chr>  <chr> actual 1     7 VNOM2008 a number    ??? file 2     7   V%2008 a number    ??? row 3    18 VNOM2008 a number    XXX col 4    18   V%2008 a number    XXX expected 5    21 VNOM2008 a number    ??? actual # ... with 1 more variables: file <chr>
+... ................. ... ................................ ........ ................................ ...... ................................ .... ................................ ... ................................ ... ................................ ........ ................................ ...... .......................................
+See problems(...) for more details.
+
+Warning message:
+In rbind(names(probs), probs_f) :
+  number of columns of result is not a multiple of vector length (arg 1)
+> View(final_before_after_treatment)
+> t.test(final_before_after_treatment$DEP, final_before_after_treatment$ANT, "two.sided", paired=TRUE)
+
+	Paired t-test
+
+data:  final_before_after_treatment$DEP and final_before_after_treatment$ANT
+t = 2.1103, df = 133, p-value = 0.03671
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.1783201 5.5091426
+sample estimates:
+mean of the differences 
+               2.843731 
+
+> 
